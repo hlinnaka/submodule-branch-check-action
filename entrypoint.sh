@@ -224,6 +224,12 @@ else
 
 	## Check that base hash is an ancestor of the ref hash
 	echo "Verify old submodule hash is ancestor of current"
+
+	echo "-- DEBUG rev-list ${SUBMODULE_HASH}"
+	git rev-list "${SUBMODULE_HASH}"
+	echo "-- DEBUG rev-list ${SUBMODULE_HASH_BASE}"
+	git rev-list "${SUBMODULE_HASH_BASE}"
+	echo "-- DEBUG end"
 	git rev-list "${SUBMODULE_HASH}" | grep "${SUBMODULE_HASH_BASE}" || fail "Submodule ${INPUT_PATH} on ${BASE_BRANCH} is not an ancestor of that on ${PR_BRANCH}"
 	echo "::endgroup::"
 fi
